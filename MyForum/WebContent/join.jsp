@@ -30,7 +30,7 @@
 		<div class="col-lg-4"></div>
 		<div class="col-lg-4">
 			<div class="jumbotron" style="padding-top: 20px; ">
-				<form method="post" action="loginAction.jsp">
+				<form method="post" action="joinAction.jsp">
 					<h3 style="text-align: center;">회원가입</h3>
 					<div class="form-group">
 						<input type="text" class="form-control" placeholder="아이디" name="userID" maxlength="20">
@@ -44,7 +44,7 @@
 					<div class="form-group">
 						<input type="email" class="form-control" placeholder="이메일" name="userEmail" maxlength="20">
 					</div>
-						<input type="submit" class="btn btn-primary form-control" value="회원가입" onclick="location.href='join.jsp'">
+						<input type="submit" class="btn btn-primary form-control" value="회원가입">
 						
 				</form>
 			</div>

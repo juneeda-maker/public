@@ -13,7 +13,7 @@ public class UserDAO {
 	
 	public UserDAO() {
 		try {
-			String jdbcURL = "jdbc:mysql://localhost:3306/MyForum";
+			String jdbcURL = "jdbc:mysql://localhost:3306/FORUM";
 			String dbID = "root";
 			String dbPassword = "4940";
 			Class.forName("com.mysql.jdbc.Driver");
@@ -39,5 +39,19 @@ public class UserDAO {
 			e.printStackTrace();
 		}
 			return -2;
+	}
+	public int join(User user) { //회원가입 
+		String SQL = "INSERT INTO USER(userID,userPassword,userName,userEmail)VALUES(?,?,?,?)";
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, user.getUserID());
+			pstmt.setString(2, user.getUserPassword());
+			pstmt.setString(3, user.getUserName());
+			pstmt.setString(4, user.getUserEmail());
+			return pstmt.executeUpdate();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return -1;
 	}
 }
