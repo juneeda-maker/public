@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 
 
@@ -66,6 +67,42 @@ public class FreeDAO {
 				e.printStackTrace();
 			}
 			return -1;
+		}
+		public ArrayList<Free> getList(int pageNumber){ //특정한 리스트 반환
+			String SQL = "SELECT * FROM FREE WHERE bbsID<? AND bbsAvailable = 1 ORDER BY bbsID DESC LIMIT 10"; //삭제되지 않은 글들만 가져
+			ArrayList<Free>list = new ArrayList<Free>();
+			try {
+				PreparedStatement pstmt = conn.prepareStatement(SQL);
+				pstmt.setInt(1, getNext()-(pageNumber-1)*10);
+				rs = pstmt.executeQuery();
+				while(rs.next()) {
+					Free free = new Free();
+					free.setBbsID(rs.getInt(1));
+					free.setBbsTitle(rs.getString(2));
+					free.setUserID(rs.getString(3));
+					free.setBbsDate(rs.getString(4));
+					free.setBbsContent(rs.getString(5));
+					free.setBbsAvailable(rs.getInt(6));
+					list.add(free);
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			return list;
+		}
+		public boolean nextPage(int pageNumber) {
+			String SQL = "SELECT * FROM FREE WHERE bbsID<? AND bbsAvailable= 1 ORDER BY bbsID DESC LIMIT 10";
+			try {
+				PreparedStatement pstmt = conn.prepareStatement(SQL);
+				pstmt.setInt(1, getNext()-(pageNumber-1)*10);
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					return true;
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			return false;
 		}
 	}
 
