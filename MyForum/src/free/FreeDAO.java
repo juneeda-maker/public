@@ -104,6 +104,27 @@ public class FreeDAO {
 			}
 			return false;
 		}
+		public Free getFree(int bbsID) { //하나의 글내용을 불러오는 함수
+			String SQL = "SELECT * FROM FREE WHERE bbsID = ?"; //삭제되지 않은 글들만 가져
+			try {
+				PreparedStatement pstmt = conn.prepareStatement(SQL);
+				pstmt.setInt(1, bbsID);
+				rs = pstmt.executeQuery();
+				if(rs.next())	{
+					Free free = new Free();
+					free.setBbsID(rs.getInt(1));
+					free.setBbsTitle(rs.getString(2));
+					free.setUserID(rs.getString(3));
+					free.setBbsDate(rs.getString(4));
+					free.setBbsContent(rs.getString(5));
+					free.setBbsAvailable(rs.getInt(6));
+					return free;
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			return null;
+		}
 	}
 
 
