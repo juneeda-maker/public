@@ -14,12 +14,12 @@
 <body>
 	<%
 		String userID = null;
-		if (session.getAttribute("userID") !=null)
+		if (session.getAttribute("userID")!=null)
 		{
-			userID = (String) session.getAttribute("userID");
+			userID = (String)session.getAttribute("userID");
 		}
 		int bbsID = 0;
-		if (request.getParameter("bbsID") !=null)
+		if (request.getParameter("bbsID")!=null)
 		{
 			bbsID = Integer.parseInt(request.getParameter("bbsID"));
 		}	
@@ -78,7 +78,7 @@
 					</tr>
 					<tr>
 						<td>작성자</td>
-						<td colspan="2"><%= free.getBbsTitle().replaceAll(" ","&nbsp;").replaceAll("<","&lt;").replaceAll(">", "&gt;").replaceAll("\n","<br>") %></td>
+						<td colspan="2"><%= free.getUserID().replaceAll(" ","&nbsp;").replaceAll("<","&lt;").replaceAll(">", "&gt;").replaceAll("\n","<br>") %></td>
 					</tr>
 					<tr>
 						<td>작성일자</td>
@@ -88,7 +88,7 @@
 					</tr>
 					<tr>
 						<td>내용</td>
-						<td colspan="2" style=" height: 200px; text-align:left;"><%= free.getBbsTitle().replaceAll(" ","&nbsp;").replaceAll("<","&lt;").replaceAll(">", "&gt;").replaceAll("\n","<br>") %></td>
+						<td colspan="2" style=" height: 200px; text-align:left;"><%= free.getBbsContent().replaceAll(" ","&nbsp;").replaceAll("<","&lt;").replaceAll(">", "&gt;").replaceAll("\n","<br>") %></td>
 					</tr>
 				</tbody>
 			</table>
@@ -98,7 +98,7 @@
 					{
 			%>
 				<a href="update.jsp?bbsID=<%= bbsID %>" class="btn btn-primary">수정</a>
-				<a href="deleteAction.jsp?bbsID=<%= bbsID %>" class="btn btn-primary">삭제</a>
+				<a onclick="return confirm('정말로 삭제하시겠습니까?')"href="deleteAction.jsp?bbsID=<%= bbsID %>" class="btn btn-primary">삭제</a>
 			<%
 					}
 			%>
