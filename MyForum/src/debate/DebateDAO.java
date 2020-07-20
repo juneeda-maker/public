@@ -7,15 +7,16 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 public class DebateDAO {
+	
 	private Connection conn;
 	private ResultSet rs;
 	
 	public DebateDAO() {
 		try {
-			String jdbcURL = "jdbc:mysql:localhost:3306/FORUM";
+			String jdbcURL = "jdbc:mysql://localhost:3306/FORUM";
 			String dbID = "root";
 			String dbPassword = "4940";
-			Class.forName("com.mysql.idbc.Driver");
+			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(jdbcURL, dbID, dbPassword);
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -52,7 +53,7 @@ public class DebateDAO {
 		return -1;
 	}
 	public int write(String bbsTitle, String userID, String bbsContent) {
-		String SQL = "INSERT INTO DEBATE VALUES(?,?,?,?,?,?)";
+		String SQL = "INSERT INTO DEBATE(bbsID, bbsTitle, userID, bbsDate, bbsContent, bbsAvailable)VALUES(?,?,?,?,?,?)";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, getNext());
@@ -103,6 +104,27 @@ public class DebateDAO {
 				e.printStackTrace();
 			}
 		return false;
+	}
+	public Debate getDebate(int bbsID) {
+		String SQL= "SELECT * FROM DEBATE WHERE bbsID = ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, bbsID);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				Debate debate = new Debate();
+				debate.setBbsID(rs.getInt(1));
+				debate.setBbsTitle(rs.getString(2));
+				debate.setUserID(rs.getString(3));
+				debate.setBbsDate(rs.getString(4));
+				debate.setBbsContent(rs.getString(5));
+				debate.setBbsAvailable(rs.getInt(6));
+				return debate;
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }
 
