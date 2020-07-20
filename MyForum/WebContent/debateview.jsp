@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter" %>
-<%@ page import="free.Free" %>
-<%@ page import="free.FreeDAO" %>
+<%@ page import="debate.Debate" %>
+<%@ page import="debate.DebateDAO" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,10 +28,10 @@
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('유효하지 않은 글입니다.')");
-			script.println("location.href = 'free.jsp'");
+			script.println("location.href = 'debate.jsp'");
 			script.println("</script>");
 		}	
-		Free free = new FreeDAO().getFree(bbsID);
+		Debate debate = new DebateDAO().getDebate(bbsID);
 	%>    
 	<nav class="navbar navbar-default">
 		<div class="navbar-header">
@@ -74,27 +74,27 @@
 				<tbody>
 					<tr>
 						<td style="width: 20%">글 제목</td>
-						<td colspan="2"><%= free.getBbsTitle().replaceAll(" ","&nbsp;").replaceAll("<","&lt;").replaceAll(">", "&gt;").replaceAll("\n","<br>") %></td>
+						<td colspan="2"><%= debate.getBbsTitle().replaceAll(" ","&nbsp;").replaceAll("<","&lt;").replaceAll(">", "&gt;").replaceAll("\n","<br>") %></td>
 					</tr>
 					<tr>
 						<td>작성자</td>
-						<td colspan="2"><%= free.getUserID().replaceAll(" ","&nbsp;").replaceAll("<","&lt;").replaceAll(">", "&gt;").replaceAll("\n","<br>") %></td>
+						<td colspan="2"><%= debate.getUserID().replaceAll(" ","&nbsp;").replaceAll("<","&lt;").replaceAll(">", "&gt;").replaceAll("\n","<br>") %></td>
 					</tr>
 					<tr>
 						<td>작성일자</td>
-						<td colspan="2"><%= free.getBbsDate().substring(0,11) + free.getBbsDate().substring(11, 13) + "시" 
+						<td colspan="2"><%= debate.getBbsDate().substring(0,11) + debate.getBbsDate().substring(11, 13) + "시" 
 
-                                + free.getBbsDate().substring(14,16) + "분"  %></td>
+                                + debate.getBbsDate().substring(14,16) + "분"  %></td>
 					</tr>
 					<tr>
 						<td>내용</td>
-						<td colspan="2" style=" height: 200px; text-align:left;"><%= free.getBbsContent().replaceAll(" ","&nbsp;").replaceAll("<","&lt;").replaceAll(">", "&gt;").replaceAll("\n","<br>") %></td>
+						<td colspan="2" style=" height: 200px; text-align:left;"><%= debate.getBbsContent().replaceAll(" ","&nbsp;").replaceAll("<","&lt;").replaceAll(">", "&gt;").replaceAll("\n","<br>") %></td>
 					</tr>
 				</tbody>
 			</table>
 			<a href="free.jsp" class="btn btn-primary">목록</a>
 			<%
-				if(userID !=null && userID.equals(free.getUserID()))
+				if(userID !=null && userID.equals(debate.getUserID()))
 					{
 			%>
 				<a href="update.jsp?bbsID=<%= bbsID %>" class="btn btn-primary">수정</a>
