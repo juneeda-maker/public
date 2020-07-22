@@ -44,20 +44,12 @@
 			script.println("location.href = 'debate.jsp'");
 			script.println("</script>");
 	}else{
-		if(request.getParameter("bbsTitle") == null || request.getParameter("bbsContent") == null
-			||	request.getParameter("bbsTitle").equals("") || request.getParameter("bbsContent").equals("")){
-			PrintWriter script = response.getWriter();
-			script.println("<script>");
-			script.println("alert('입력이 안된 사항이 있습니다.')");
-			script.println("history.back()");
-			script.println("</script>");
-		}else{
 			DebateDAO debateDAO = new DebateDAO();
-			int result = debateDAO.update(bbsID, request.getParameter("bbsTitle"), request.getParameter("bbsContent"));
+			int result = debateDAO.delete(bbsID);
 			if(result == -1){
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
-				script.println("alert('글 수정에 실패했습니다.')");
+				script.println("alert('글 삭제에 실패했습니다.')");
 				script.println("history.back()");
 				script.println("</script>");
 			}else{
@@ -67,7 +59,7 @@
 				script.println("</script>");
 			}
 		}
-	}
+	
 	
 	%>
 </body>

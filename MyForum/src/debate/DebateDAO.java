@@ -139,6 +139,18 @@ public class DebateDAO {
 		}
 		return -1;
 	}
+	public int delete(int bbsID) {
+		String SQL = "UPDATE DEBATE SET bbsAvailable = 0 WHERE bbsID= ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, bbsID);
+			return pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
 }
+
 
 
