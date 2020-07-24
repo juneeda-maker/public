@@ -2,6 +2,7 @@ package comment;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class CommentDAO {
@@ -19,5 +20,19 @@ public class CommentDAO {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+	}
+	public String getDate() {
+		String SQL = "SELECT NOW()";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				return rs.getString(1);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return "";
 	}
 }
