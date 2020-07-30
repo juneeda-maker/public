@@ -1,40 +1,39 @@
 package comment;
 
 public class Comment {
-	
-	private int COMMENT_NUM;
-	private String COMMENT_ID;
-	private String COMMENT_CONTENT;
-	private String COMMENT_DATE;
-	public int getCOMMENT_NUM() {
-		return COMMENT_NUM;
+	private int rnum;
+	private int rboard;
+	private String ruserID;
+	private String content;
+	private String rdate;
+	public int getRnum() {
+		return rnum;
 	}
-	public void setCOMMENT_NUM(int cOMMENT_NUM) {
-		COMMENT_NUM = cOMMENT_NUM;
+	public void setRnum(int rnum) {
+		this.rnum = rnum;
 	}
-	public String getCOMMENT_ID() {
-		return COMMENT_ID;
+	public int getRboard() {
+		return rboard;
 	}
-	public void setCOMMENT_ID(String cOMMENT_ID) {
-		COMMENT_ID = cOMMENT_ID;
+	public void setRboard(int rboard) {
+		this.rboard = rboard;
 	}
-	public String getCOMMENT_CONTENT() {
-		return COMMENT_CONTENT;
+	public String getRuserID() {
+		return ruserID;
 	}
-	public void setCOMMENT_CONTENT(String cOMMENT_CONTENT) {
-		COMMENT_CONTENT = cOMMENT_CONTENT;
+	public void setRuserID(String ruserID) {
+		this.ruserID = ruserID;
 	}
-	public String getCOMMENT_DATE() {
-		return COMMENT_DATE;
+	public String getContent() {
+		return content;
 	}
-	public void setCOMMENT_DATE(String cOMMENT_DATE) {
-		COMMENT_DATE = cOMMENT_DATE;
+	public void setContent(String content) {
+		this.content = content;
 	}
-	public int getCOMMENT_BOARD() {
-		return COMMENT_BOARD;
+	public String getRdate() {
+		return rdate;
 	}
-	public void setCOMMENT_BOARD(int cOMMENT_BOARD) {
-		COMMENT_BOARD = cOMMENT_BOARD;
+	public void setRdate(String rdate) {
+		this.rdate = rdate;
 	}
-	private int COMMENT_BOARD;
 }

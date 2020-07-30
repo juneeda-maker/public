@@ -104,6 +104,25 @@
 			%>
 		</div>
 	</div>
+	<div class="container"> <!-- 댓글 부분 -->
+		<div class="row">
+		<form method="post" action="commentAction.jsp">
+			<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd;">
+				<thead>
+					<tr>
+						<th colspan="2" style="background-color: #eeeeee; text-align: center;">댓글작성</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><input type="text" class="form-control" placeholder="댓글을 작성해 주세요..." name="content" maxlength="50"></td>
+					</tr>
+				</tbody>
+			</table>
+			<input type="submit" class="btn btn-primary pull-right" value="댓글작성">
+			</form>
+		</div>
+	</div>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>
 </body>
