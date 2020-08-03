@@ -2,7 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter" %>
 <%@ page import="free.Free" %>
+<%@ page import="comment.Comment" %>
 <%@ page import="free.FreeDAO" %>
+<%@ page import="comment.CommentDAO" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -115,6 +117,10 @@
 				</thead>
 				<tbody>
 					<tr>
+						<td></td>
+					</tr>
+					<tr>
+						<td><%= free.getUserID().replaceAll(" ","&nbsp;").replaceAll("<","&lt;").replaceAll(">", "&gt;").replaceAll("\n","<br>") %></td>
 						<td><input type="text" class="form-control" placeholder="댓글을 작성해 주세요..." name="content" maxlength="50"></td>
 						<td><input type="submit" class="btn btn-primary pull-right" value="댓글작성"></td>
 					</tr>

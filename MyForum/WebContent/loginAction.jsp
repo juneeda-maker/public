@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="user.UserDAO" %>    
+<%@ page import="comment.CommentDAO" %>    
 <%@ page import="java.io.PrintWriter" %>
 <% request.setCharacterEncoding("UTF-8"); %>
 <jsp:useBean id="user" class="user.User" scope="page" />
 <jsp:setProperty name="user" property="userID" />
 <jsp:setProperty name="user" property="userPassword" />
+<jsp:setProperty name="comment" property="ruserID" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,8 +16,10 @@
 </head>
 <body>
 	<%	String userID = null;
-		if(session.getAttribute("userID") !=null){
+		String ruserID = userID;
+		if(session.getAttribute("userID") !=null ){
 			userID = (String)session.getAttribute("userID");
+			
 		}
 		if(userID !=null){
 			PrintWriter script = response.getWriter();
